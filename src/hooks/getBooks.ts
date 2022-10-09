@@ -7,6 +7,9 @@ const useGetBooks = () => {
     query {
       books {
         id
+        title
+        author
+        price
       }
     }
   `;

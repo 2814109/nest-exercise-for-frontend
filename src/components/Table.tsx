@@ -11,44 +11,39 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import useGetBooks from "../hooks/getBooks";
-
+import { Book } from "../types/book";
 const BasicTable: FC = () => {
   // todo : separate custom hooks
-  const { data } = useGetBooks();
-  console.log(data);
+  const { data: books } = useGetBooks();
+  console.log(books);
   return (
     <TableContainer>
       <Table variant="striped">
         <TableCaption>Imperial to metric conversion factors</TableCaption>
         <Thead>
           <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
+            <Th>Id</Th>
+            <Th>Title</Th>
+            <Th isNumeric>Price</Th>
+            <Th>Author</Th>
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>inches</Td>
-            <Td>millimetres (mm)</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>feet</Td>
-            <Td>centimetres (cm)</Td>
-            <Td isNumeric>30.48</Td>
-          </Tr>
-          <Tr>
-            <Td>yards</Td>
-            <Td>metres (m)</Td>
-            <Td isNumeric>0.91444</Td>
-          </Tr>
+          {books?.map((book: Book) => (
+            <Tr key={book.id}>
+              <Td>{book.id}</Td>
+              <Td>{book.title}</Td>
+              <Td isNumeric>{book.price}</Td>
+              <Td>{book.author}</Td>
+            </Tr>
+          ))}
         </Tbody>
         <Tfoot>
           <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
+            <Th>Id</Th>
+            <Th>Title</Th>
+            <Th isNumeric>Price</Th>
+            <Th>Author</Th>
           </Tr>
         </Tfoot>
       </Table>
