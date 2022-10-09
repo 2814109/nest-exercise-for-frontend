@@ -10,9 +10,12 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
+import useGetBooks from "../hooks/getBooks";
+
 const BasicTable: FC = () => {
   // todo : separate custom hooks
-
+  const { data } = useGetBooks();
+  console.log(data);
   return (
     <TableContainer>
       <Table variant="striped">
