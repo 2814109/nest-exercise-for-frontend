@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useToast } from "@chakra-ui/react";
+import { CircularProgress, Flex, useToast } from "@chakra-ui/react";
 import useAddBooks from "../hooks/addBook";
 import {
   FormControl,
@@ -13,7 +13,7 @@ import {
 import { BookFormType } from "../types/book";
 
 const BasicForm: FC = () => {
-  const { mutate } = useAddBooks();
+  const { mutate, isLoading, isSuccess } = useAddBooks();
   const {
     handleSubmit,
     register,
@@ -24,15 +24,20 @@ const BasicForm: FC = () => {
 
   function onSubmit(values: BookFormType) {
     mutate(values);
-    console.log(values);
-    toast({
-      title: "Book Registered.",
-      description: "We've registered your book for you.",
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    });
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast({
+        title: "Book Registered.",
+        description: "We've registered your book for you.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }, [isSuccess]);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl isInvalid={Boolean(errors.title)}>
@@ -85,14 +90,20 @@ const BasicForm: FC = () => {
         </FormErrorMessage>
       </FormControl>
 
-      <Button
-        mt={4}
-        colorScheme="linkedin"
-        isLoading={isSubmitting}
-        type="submit"
-      >
-        Submit
-      </Button>
+      {isLoading ? (
+        <Flex align={"center"} justifyContent={"center"}>
+          <CircularProgress isIndeterminate color="green.300" />
+        </Flex>
+      ) : (
+        <Button
+          mt={4}
+          colorScheme="linkedin"
+          isLoading={isSubmitting}
+          type="submit"
+        >
+          Submit
+        </Button>
+      )}
     </form>
   );
 };
