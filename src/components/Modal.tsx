@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -11,7 +11,10 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const BasicModal: FC = () => {
+type Props = {
+  children: ReactNode;
+};
+const BasicModal: FC<Props> = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -22,7 +25,7 @@ const BasicModal: FC = () => {
         <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{"test"}</ModalBody>
+          <ModalBody>{children}</ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>

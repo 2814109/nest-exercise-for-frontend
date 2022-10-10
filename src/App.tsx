@@ -7,7 +7,7 @@ const App: FC = () => (
   // centering by chakraUI
   <>
     <Flex align={"center"} justifyContent={"center"}>
-      <BasicModal />
+      <BasicModal>test1</BasicModal>
     </Flex>
     <Flex align={"center"} justifyContent={"center"}>
       <Suspense
