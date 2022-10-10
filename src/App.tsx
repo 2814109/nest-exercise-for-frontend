@@ -7,8 +7,8 @@ import BasicForm from "./components/Form";
 const App: FC = () => (
   // centering by chakraUI
   <>
-    <Flex align={"center"} justifyContent={"center"}>
-      <BasicModal>
+    <Flex align={"center"} justifyContent={"center"} m={5}>
+      <BasicModal buttonTitle="Create Book">
         <BasicForm />
       </BasicModal>
     </Flex>

@@ -13,12 +13,13 @@ import {
 
 type Props = {
   children: ReactNode;
+  buttonTitle: string;
 };
-const BasicModal: FC<Props> = ({ children }) => {
+const BasicModal: FC<Props> = ({ children, buttonTitle }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button onClick={onOpen}>{buttonTitle}</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
