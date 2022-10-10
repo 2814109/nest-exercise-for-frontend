@@ -12,14 +12,14 @@ import {
 } from "@chakra-ui/react";
 import useGetBooks from "../hooks/getBooks";
 import { Book } from "../types/book";
+
 const BasicTable: FC = () => {
-  // todo : separate custom hooks
   const { data: books } = useGetBooks();
   console.log(books);
   return (
     <TableContainer>
       <Table variant="striped">
-        <TableCaption>Imperial to metric conversion factors</TableCaption>
+        <TableCaption>Your Library</TableCaption>
         <Thead>
           <Tr>
             <Th>Id</Th>

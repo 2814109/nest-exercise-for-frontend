@@ -21,6 +21,7 @@ const BasicForm: FC = () => {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm<BookFormType>();
 
   const toast = useToast();
@@ -32,6 +33,7 @@ const BasicForm: FC = () => {
   useEffect(() => {
     if (isSuccess) {
       refetch();
+      reset();
       toast({
         title: "Book Registered.",
         description: "We've registered your book for you.",
