@@ -3,11 +3,14 @@ import { FC, Suspense } from "react";
 import Table from "./components/Table";
 import { Flex } from "@chakra-ui/react";
 import BasicModal from "./components/Modal";
+import BasicForm from "./components/Form";
 const App: FC = () => (
   // centering by chakraUI
   <>
     <Flex align={"center"} justifyContent={"center"}>
-      <BasicModal>test1</BasicModal>
+      <BasicModal>
+        <BasicForm />
+      </BasicModal>
     </Flex>
     <Flex align={"center"} justifyContent={"center"}>
       <Suspense
