@@ -12,7 +12,7 @@ const useAddBooks = () => {
     }
   `;
 
-  return useMutation(["addBooks"], async (variables: BookFormType) => {
+  return useMutation(["add-books"], async (variables: BookFormType) => {
     const { addBook } = await request(endpoint, query, {
       title: variables.title,
       price: Number(variables.price),

@@ -11,9 +11,11 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { BookFormType } from "../types/book";
+import useGetBooks from "../hooks/getBooks";
 
 const BasicForm: FC = () => {
   const { mutate, isLoading, isSuccess } = useAddBooks();
+  const { refetch } = useGetBooks();
   const {
     handleSubmit,
     register,
@@ -28,6 +30,7 @@ const BasicForm: FC = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      refetch();
       toast({
         title: "Book Registered.",
         description: "We've registered your book for you.",

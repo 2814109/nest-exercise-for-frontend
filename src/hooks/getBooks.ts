@@ -14,7 +14,7 @@ const useGetBooks = () => {
     }
   `;
 
-  return useQuery(["books"], async () => {
+  return useQuery(["get-books"], async () => {
     const { books } = await request(endpoint, query);
     return books;
   });
