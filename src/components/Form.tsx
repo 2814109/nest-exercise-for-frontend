@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { useToast } from "@chakra-ui/react";
-
+import useAddBooks from "../hooks/addBook";
 import {
   FormControl,
   FormLabel,
@@ -10,23 +10,20 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-
-type FormType = {
-  title: string;
-  price: number;
-  author: string;
-};
+import { BookFormType } from "../types/book";
 
 const BasicForm: FC = () => {
+  const { mutate } = useAddBooks();
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm<FormType>();
+  } = useForm<BookFormType>();
 
   const toast = useToast();
 
-  function onSubmit(values: FormType) {
+  function onSubmit(values: BookFormType) {
+    mutate(values);
     console.log(values);
     toast({
       title: "Book Registered.",
@@ -88,7 +85,12 @@ const BasicForm: FC = () => {
         </FormErrorMessage>
       </FormControl>
 
-      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
+      <Button
+        mt={4}
+        colorScheme="linkedin"
+        isLoading={isSubmitting}
+        type="submit"
+      >
         Submit
       </Button>
     </form>

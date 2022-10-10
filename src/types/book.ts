@@ -4,3 +4,5 @@ export type Book = {
   price: number;
   author: string;
 };
+
+export type BookFormType = Omit<Book, "id">;

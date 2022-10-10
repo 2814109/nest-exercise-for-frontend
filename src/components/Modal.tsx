@@ -23,15 +23,15 @@ const BasicModal: FC<Props> = ({ children }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          {/* displayed modal title */}
+          <ModalHeader></ModalHeader>
           <ModalCloseButton />
           <ModalBody>{children}</ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button colorScheme="blackAlpha" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
