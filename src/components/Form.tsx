@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
+import { useToast } from "@chakra-ui/react";
 
 import {
   FormControl,
@@ -23,8 +24,17 @@ const BasicForm: FC = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormType>();
 
+  const toast = useToast();
+
   function onSubmit(values: FormType) {
     console.log(values);
+    toast({
+      title: "Book Registered.",
+      description: "We've registered your book for you.",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
