@@ -16,6 +16,7 @@ import useGetBooks from "../hooks/getBooks";
 const BasicForm: FC = () => {
   const { mutate, isLoading, isSuccess } = useAddBooks();
   const { refetch } = useGetBooks();
+
   const {
     handleSubmit,
     register,
@@ -24,9 +25,9 @@ const BasicForm: FC = () => {
 
   const toast = useToast();
 
-  function onSubmit(values: BookFormType) {
+  const onSubmit = (values: BookFormType) => {
     mutate(values);
-  }
+  };
 
   useEffect(() => {
     if (isSuccess) {
