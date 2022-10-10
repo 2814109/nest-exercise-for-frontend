@@ -2,17 +2,10 @@ import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { CircularProgress, Flex, useToast } from "@chakra-ui/react";
 import useAddBooks from "../hooks/addBook";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Input,
-  Button,
-} from "@chakra-ui/react";
+import { Button, Box } from "@chakra-ui/react";
 import { BookFormType } from "../types/book";
 import useGetBooks from "../hooks/getBooks";
-
+import FormItem from "./form/Item";
 const BasicForm: FC = () => {
   const { mutate, isLoading, isSuccess } = useAddBooks();
   const { refetch } = useGetBooks();
@@ -46,55 +39,26 @@ const BasicForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={Boolean(errors.title)}>
-        <FormLabel htmlFor="title">Book Tile</FormLabel>
-        <Input
-          id="title"
-          placeholder="title"
-          type="text"
-          {...register("title", {
-            required: "This is required",
-            minLength: { value: 4, message: "Minimum length should be 4" },
-          })}
-        />
-        <FormHelperText>title</FormHelperText>
-        <FormErrorMessage>
-          {errors.title && errors.title.message}
-        </FormErrorMessage>
-      </FormControl>
+      <Box m={4}>
+        <FormItem error={errors.title} keyString="title" register={register} />
+      </Box>
 
-      <FormControl isInvalid={Boolean(errors.price)}>
-        <FormLabel htmlFor="price">Book Price</FormLabel>
-        <Input
-          id="price"
-          placeholder="price"
-          type="number"
-          {...register("price", {
-            required: "This is required",
-          })}
+      <Box m={4}>
+        <FormItem
+          error={errors.price}
+          keyString="price"
+          register={register}
+          typeKey="number"
         />
-        <FormHelperText>price</FormHelperText>
-        <FormErrorMessage>
-          {errors.price && errors.price.message}
-        </FormErrorMessage>
-      </FormControl>
+      </Box>
 
-      <FormControl isInvalid={Boolean(errors.author)}>
-        <FormLabel htmlFor="author">Book Author</FormLabel>
-        <Input
-          id="author"
-          placeholder="author"
-          type="text"
-          {...register("author", {
-            required: "This is required",
-            minLength: { value: 4, message: "Minimum length should be 4" },
-          })}
+      <Box m={4}>
+        <FormItem
+          error={errors.author}
+          keyString="author"
+          register={register}
         />
-        <FormHelperText>author</FormHelperText>
-        <FormErrorMessage>
-          {errors.author && errors.author.message}
-        </FormErrorMessage>
-      </FormControl>
+      </Box>
 
       {isLoading ? (
         <Flex align={"center"} justifyContent={"center"}>
